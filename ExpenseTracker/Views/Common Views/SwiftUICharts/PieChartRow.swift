@@ -29,8 +29,8 @@ public struct PieChartRow : View {
     public var body: some View {
         GeometryReader { geometry in
             ZStack{
-                ForEach(0..<self.slices.count){ i in
-                    PieChartCell(rect: geometry.frame(in: .local), startDeg: self.slices[i].startDeg, endDeg: self.slices[i].endDeg, index: i, backgroundColor: self.backgroundColor,accentColor: self.slices[i].color)
+                ForEach(Array(self.slices.enumerated()), id: \.offset) { i in
+                    PieChartCell(rect: geometry.frame(in: .local), startDeg: self.slices[i.offset].startDeg, endDeg: self.slices[i.offset].endDeg, index: i.offset, backgroundColor: self.backgroundColor,accentColor: self.slices[i.offset].color)
                 }
             }
         }
